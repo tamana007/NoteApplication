@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Notes.scss";
 import { MdDeleteSweep } from "react-icons/md";
 
-function Note({ note, setNote, id, isSave, setSave }) {
+function Note({ note,isNote, setIsNote, setNote, id, isSave, setSave }) {
   console.log("my note here", note);
 
   const [text, setText] = useState("");
@@ -16,16 +16,21 @@ function Note({ note, setNote, id, isSave, setSave }) {
     }
     // console.log('note in save',note);
     // console.log('txt here',text);
+
+      setNote((prev) => [...note, { id: Math.floor(Math.random()*1000), Text: text }]);
+
+      // setIsNote(false)
   }
   //::::::::::::::::::::::DELETE Function::::::::::::::::
 
   function handleDelete() {
+    setIsNote(!isNote)
     // const updateNote=note.filter((item)=>item.id !==id)
     // console.log('handled delete');
     // setNote(updateNote)
 
-    const newNote = note.filter((note) => note.id !== id);
-    setNote(newNote);
+    // const newNote = note.filter((note) => note.id !== id);
+    // setNote(newNote);
     // console.log("newNote", newNote);
     // console.log("from delete", note);
   }
@@ -33,7 +38,7 @@ function Note({ note, setNote, id, isSave, setSave }) {
     <div className="note-container">
       {/* <div className={`note-container ${isSave ? "saved" : "note-container"}`}> */}
  <div className="text">
-        <div className={`mini-container ${isSave?"saved":""}`}>
+        <div className={`mini-container ${isSave?"saved":"mini-container"}`}>
           
           {/* It is only white area container */}
           <div

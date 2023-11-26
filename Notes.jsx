@@ -3,20 +3,26 @@ import Note from "./Note";
 import "./Notes.scss";
 import { GrNotes } from "react-icons/gr";
 import { LuPencilLine } from "react-icons/lu";
+import SavedNotes from "./SavedNotes";
 // import { MdDeleteSweep } from "react-icons/md";
 // import {<FontAwesomeIcon icon="fa-solid fa-notes" />} from 'react-icon/fa'
 
 function Notes() {
   const [isClick, setIsclick] = useState(false);
-  const [note, setNote] = useState([]);
+  const [isNote, setIsNote] = useState(false);
+  const [notes, setNotes] = useState([]);
   const [isSaveClick, setIsSaveClick] = useState(false);
+  // const [saveNote,setSaveNote]=useState()
 
   function handleBtn() {
     setIsclick(!isClick);
-    if (!isClick) {
-      setNote((prev) => [...note, { id: prev.length + 1, Text: "new note" }]);
-      console.log(note);
-    }
+    // if (!isClick) {
+    //   setNotes((prev) => [...note, { id: prev.length + 1, Text: "new note" }]);
+    //   // console.log(note);
+    //   setIsSaveClick(!true)
+    // }
+
+    setIsNote(true);
   }
 
   return (
@@ -36,7 +42,18 @@ function Notes() {
           </button>
         </div>
         <div className="notescomp">
-          {note.map((item) => {
+          {isSaveClick && (
+            <SavedNotes 
+            isSave={isSaveClick}
+              setSave={setIsSaveClick}
+              notes={notes}
+              seNote={setNotes}
+            />
+          )}
+
+        
+        {/* <SavedNotes savedNotes={saveNote}/> */}
+          {/* {note.map((item) => {
             return (
               <Note
                 key={item.id}
@@ -47,7 +64,22 @@ function Notes() {
                 setSave={setIsSaveClick}
               />
             );
-          })}
+          })} */}
+
+          {isNote && (
+            <Note
+              note={notes}
+              setNote={setNotes}
+              // id={item.id}
+              isSave={isSaveClick}
+              setSave={setIsSaveClick}
+            setIsNote={setIsNote}
+            isNote={isNote}
+            
+            />
+            
+          )}
+          
         </div>
       </div>
     </div>
