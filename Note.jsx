@@ -19,7 +19,7 @@ function Note({ note,isNote, setIsNote, setNote, id, isSave, setSave }) {
 
       setNote((prev) => [...note, { id: Math.floor(Math.random()*1000), Text: text }]);
 
-      // setIsNote(false)
+      setIsNote(false)
   }
   //::::::::::::::::::::::DELETE Function::::::::::::::::
 

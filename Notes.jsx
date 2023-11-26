@@ -23,6 +23,7 @@ function Notes() {
     // }
 
     setIsNote(true);
+    console.log(isNote);
   }
 
   return (
@@ -41,8 +42,10 @@ function Notes() {
             Create Notes
           </button>
         </div>
+        {/* ::::::::::::::::::::COMPONENTS RENDERING ::::::::::::::::::::*/}
+
         <div className="notescomp">
-          {isSaveClick && (
+          {notes.length > 0 && (
             <SavedNotes 
             isSave={isSaveClick}
               setSave={setIsSaveClick}
@@ -73,8 +76,8 @@ function Notes() {
               // id={item.id}
               isSave={isSaveClick}
               setSave={setIsSaveClick}
-            setIsNote={setIsNote}
-            isNote={isNote}
+              setIsNote={setIsNote}
+              isNote={isNote}
             
             />
             
