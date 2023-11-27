@@ -12,6 +12,12 @@ function Notes() {
   const [isNote, setIsNote] = useState(false);
   const [notes, setNotes] = useState([]);
   const [isSaveClick, setIsSaveClick] = useState(false);
+  const[isEditting,setIsEditting]=useState(null);
+  const [text, setText] = useState("");
+
+  const [id, setId] = useState();
+
+
   // const [saveNote,setSaveNote]=useState()
 
   function handleBtn() {
@@ -23,6 +29,9 @@ function Notes() {
     // }
 
     setIsNote(true);
+    if(!!text){
+      setText("")
+    }
     // console.log(isNote);
   }
 
@@ -45,31 +54,19 @@ function Notes() {
         {/* ::::::::::::::::::::COMPONENTS RENDERING ::::::::::::::::::::*/}
 
         <div className="notescomp">
-        {isNote && (
-            <Note
-              note={notes}
-              setNote={setNotes}
-              // id={item.id}
+          {notes.length > 0 && (
+            <SavedNotes
               isSave={isSaveClick}
               setSave={setIsSaveClick}
-              setIsNote={setIsNote}
-              isNote={isNote}
-            
-            />
-            
-          )}
-          {notes.length > 0 && (
-            <SavedNotes 
-            isSave={isSaveClick}
-              setSave={setIsSaveClick}
               notes={notes}
-              seNotes={setNotes}
+              seNote={setNotes}
               setIsNote={setIsNote}
+              text={text}
+              setText={setText}
             />
           )}
 
-        
-        {/* <SavedNotes savedNotes={saveNote}/> */}
+          {/* <SavedNotes savedNotes={saveNote}/> */}
           {/* {note.map((item) => {
             return (
               <Note
@@ -83,8 +80,35 @@ function Notes() {
             );
           })} */}
 
-         
-          
+          {isEditting && (
+            <Note
+              edittingNote={isEditting}
+              setIsEditting={setIsEditting}
+              setNote={setNotes}
+              isSave={isSaveClick}
+              setSave={setIsSaveClick}
+              setIsNote={setIsNote}
+              isNote={true}
+              text={text}
+              setText={setText}
+              id={id}
+              setId={setId}
+            />
+          )}
+
+          {isNote && (
+            <Note
+              note={notes}
+              setNote={setNotes}
+              // id={item.id}
+              isSave={isSaveClick}
+              setSave={setIsSaveClick}
+              setIsNote={setIsNote}
+              isNote={isNote}
+              text={text}
+              setText={setText}
+            />
+          )}
         </div>
       </div>
     </div>
