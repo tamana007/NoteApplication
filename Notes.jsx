@@ -23,7 +23,7 @@ function Notes() {
     // }
 
     setIsNote(true);
-    console.log(isNote);
+    // console.log(isNote);
   }
 
   return (
@@ -45,12 +45,26 @@ function Notes() {
         {/* ::::::::::::::::::::COMPONENTS RENDERING ::::::::::::::::::::*/}
 
         <div className="notescomp">
+        {isNote && (
+            <Note
+              note={notes}
+              setNote={setNotes}
+              // id={item.id}
+              isSave={isSaveClick}
+              setSave={setIsSaveClick}
+              setIsNote={setIsNote}
+              isNote={isNote}
+            
+            />
+            
+          )}
           {notes.length > 0 && (
             <SavedNotes 
             isSave={isSaveClick}
               setSave={setIsSaveClick}
               notes={notes}
-              seNote={setNotes}
+              seNotes={setNotes}
+              setIsNote={setIsNote}
             />
           )}
 
@@ -69,19 +83,7 @@ function Notes() {
             );
           })} */}
 
-          {isNote && (
-            <Note
-              note={notes}
-              setNote={setNotes}
-              // id={item.id}
-              isSave={isSaveClick}
-              setSave={setIsSaveClick}
-              setIsNote={setIsNote}
-              isNote={isNote}
-            
-            />
-            
-          )}
+         
           
         </div>
       </div>

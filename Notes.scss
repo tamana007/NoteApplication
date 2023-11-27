@@ -12,16 +12,16 @@ body{
 width: 100%;
 height: 100%;
 align-items: center;
-  display: grid;
+  display: flex;
   grid-template-columns: 300px 300px 300px;
   //this added
   // flex-direction: row;
   // 
   // flex-wrap: wrap;
-  // justify-content: center;
+  justify-content: space-between;
 }
 .items{
-  width: 100%;
+  width: 300p;;
   // background-color: aquamarine;
   margin-left: 50px;
   display: flex;
@@ -30,9 +30,10 @@ align-items: center;
   // width: 20%;
 }
 .notescomp{
-  display: grid;
-  grid-template-columns: 350px 350px 350px;
-  gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  // grid-template-columns: 350px 350px 350px;
+  gap: 200px;
   // grid-template-rows: 400px 400px 400px 400px;
 
 }
@@ -125,10 +126,38 @@ h4{
 //   align-items: center;
 //   justify-content: center;
 // }
-// .saved {
-//   transform: translateX(calc(400% - 20px)); // Move to the right side
-// }
+.saved-notes {
+  width: 300px;
+  background-color: rgb(187, 143, 185);
+  padding: 20px;
+  border-radius: 15px;
+ 
+  
+  
+}
+.saved-articled{
+  gap: 10px;
+}
+.saved-items{
+  height: 50px;
+  justify-content: space-between;
+  display: flex;
+  background-color: rgb(233, 146, 221);
+  border-radius: 5px;
+  border-color: blue;
+  // gap: 10px;
+  padding: 10px 10px;
+}
 // .resume {
 //   transform: translateX(0); // Move to the right side
 // }
 
+.edit-btn{
+  width: 50px;
+  height: 25px;
+  background-color: #cfaacc;
+  // margin-left: 200px;
+}
+.saved-container{
+  // background-color: #e0b0dc;
+}
