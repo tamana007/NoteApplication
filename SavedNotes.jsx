@@ -4,25 +4,32 @@ import Note from './Note';
 import { BiSolidCreditCard } from "react-icons/bi";
 
 
-function SavedNotes({isSave,setText, setSave,notes,seNotes,setIsNote}) {
-  const[isEditting,setIsEditting]=useState(null);
+function SavedNotes({isEditting,setIsEditting, sSave,text,setText, setSave,notes,seNotes,setIsNote,id, setId}) {
 
 
   function handleEdit(id) {
     console.log('Editing started...',id);
+    // const id=id.map((item)=>item.)
+
+    setIsEditting(true)
 
     // Find the note with the specified id
-    const editedNote = notes.find((item) => item.id === id);
-    console.log('Editted Note:', editedNote);
+    // const editedNote = notes.find((item) => item.id === id);
+    console.log('Editted Note:', id);
+    const editedNote = notes.find((note)=>note.id===id);
+    // console.log('text here',editedNote.Text);
 
-
-      // Set isNote to true to display the Note component
-      setIsNote(true);
-      console.log('id after click',id);
-    // }
+    console.log('editted note',editedNote);
     setText(editedNote.Text)
-    setIsEditting(editedNote);
-    setIsNote(true);
+    setId(editedNote.id)
+
+    // Set isNote to true to display the Note component
+    //   setIsNote(true);
+    //   console.log('id after click',id);
+    // // }
+    // setText(editedNote.Text)
+    // setIsEditting(editedNote);
+    // setIsNote(true);
     console.log('is editiing',isEditting);
   }
 

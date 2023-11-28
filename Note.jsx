@@ -2,27 +2,60 @@ import React, { useState } from "react";
 import "./Notes.scss";
 import { MdDeleteSweep } from "react-icons/md";
 
-function Note({ note, text, setText, setIsNote, edittingNote,setIsEditting, setNote, id, isSave, setSave }) {
-  console.log("my note here", note);
+function Note({ notes, text, setText, edittingNote,setIsEditting, setNote, id, isSave, setSave }) {
+  console.log("my note here", notes);
+  console.log("editingNote", edittingNote);
 
 
   //::::::::::::SAVE Function:::::::::::::::::::::::::
-  function handleSave(p) {
-    if(edittingNote){
-    }
-    if (text) {
-      setSave(!isSave);
-      console.log("save from set", isSave);
-    }
-    setNote((prev) => [...note, { id: Math.floor(Math.random()*1000), Text: text }]);
-      setIsNote(false)
-      // setIsEditting()
+  // function handleSave(p) {
+  //   if(edittingNote){
+  //   }
+  //   if (text) {
+  //     setSave(!isSave);
+  //     console.log("save from set", isSave);
+  //   }
+  //   setNote((prev) => [...note, { id: Math.floor(Math.random()*1000), Text: text }]);
+  //     setIsNote(false)
+  //     // setIsEditting()
 
+  // }
+  function handleSave() {
+
+    //editing mode
+      if (edittingNote) {
+        // If editing, update the existing note
+        const updatedNote = notes.map((item)=>{
+          if(item.id === id){
+            item.Text = text
+          }
+          return item;
+        })
+        console.log(updatedNote)
+        setNote(updatedNote);
+        // setNote((prevNotes) =>
+        //   prevNotes.map((n) => (n.id === edittingNote.id ? { ...n, Text: text } : n))
+        // );
+        setIsEditting(null);
+
+      } 
+      
+      //creating mode..
+      else {
+        // If creating a new note
+        setNote((prev) => [
+          ...prev,
+          { id: Math.floor(Math.random() * 1000), Text: text },
+        ]);
+      }
+  
+      setSave(!isSave);
+      // setIsNote(false);
   }
   //::::::::::::::::::::::DELETE Function::::::::::::::::
 
   function handleDelete() {
-    const newNote = note.filter((note) => note.id !== id);
+    const newNote = notes.filter((note) => note.id !== id);
     setNote(newNote);
   }
   return (

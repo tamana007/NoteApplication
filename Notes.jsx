@@ -12,9 +12,8 @@ function Notes() {
   const [isNote, setIsNote] = useState(false);
   const [notes, setNotes] = useState([]);
   const [isSaveClick, setIsSaveClick] = useState(false);
-  const[isEditting,setIsEditting]=useState(null);
+  const[isEditting, setIsEditting]=useState(null);
   const [text, setText] = useState("");
-
   const [id, setId] = useState();
 
 
@@ -22,9 +21,15 @@ function Notes() {
 
   function handleBtn() {
     setIsclick(!isClick);
-    // if (!isClick) {
-    //   setNotes((prev) => [...note, { id: prev.length + 1, Text: "new note" }]);
-    //   // console.log(note);
+    console.log('ID goes lere',id);
+    console.log('notes',notes);
+    const noteIds=notes.map((note)=>note.id);
+    setId(noteIds[2])
+    console.log('Now lets get ID',id);
+    
+    // if (!isEditting) {
+    //   setId((prev) => [...id, { id: prev.id}]);
+    //   console.log('changed id',id);
     //   setIsSaveClick(!true)
     // }
 
@@ -32,8 +37,8 @@ function Notes() {
     if(!!text){
       setText("")
     }
-    // console.log(isNote);
   }
+  
 
   return (
     <div className="Notes">
@@ -58,11 +63,15 @@ function Notes() {
             <SavedNotes
               isSave={isSaveClick}
               setSave={setIsSaveClick}
+              isEditting={isEditting}
+              setIsEditting={setIsEditting}
               notes={notes}
               seNote={setNotes}
               setIsNote={setIsNote}
               text={text}
               setText={setText}
+              id={id}
+              setId={setId}
             />
           )}
 
@@ -87,7 +96,7 @@ function Notes() {
               setNote={setNotes}
               isSave={isSaveClick}
               setSave={setIsSaveClick}
-              setIsNote={setIsNote}
+              notes={notes}
               isNote={true}
               text={text}
               setText={setText}
@@ -107,6 +116,8 @@ function Notes() {
               isNote={isNote}
               text={text}
               setText={setText}
+              id={id}
+              setId={setId}
             />
           )}
         </div>
