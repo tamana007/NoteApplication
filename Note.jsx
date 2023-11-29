@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Notes.scss";
 import { MdDeleteSweep } from "react-icons/md";
 
-function Note({ notes, text, setText, edittingNote,setIsEditting, setNote, id, isSave, setSave }) {
+function Note({ notes, text, setText, edittingNote,setIsEditting, setNote, id, isSave, setSave,setIsNote }) {
   console.log("my note here", notes);
   console.log("editingNote", edittingNote);
 
@@ -36,7 +36,7 @@ function Note({ notes, text, setText, edittingNote,setIsEditting, setNote, id, i
         // setNote((prevNotes) =>
         //   prevNotes.map((n) => (n.id === edittingNote.id ? { ...n, Text: text } : n))
         // );
-        setIsEditting(null);
+        setIsEditting(!edittingNote);
 
       } 
       
@@ -47,9 +47,12 @@ function Note({ notes, text, setText, edittingNote,setIsEditting, setNote, id, i
           ...prev,
           { id: Math.floor(Math.random() * 1000), Text: text },
         ]);
+        setIsNote(false)
+        
       }
   
       setSave(!isSave);
+      setText('');
       // setIsNote(false);
   }
   //::::::::::::::::::::::DELETE Function::::::::::::::::
@@ -76,20 +79,20 @@ function Note({ notes, text, setText, edittingNote,setIsEditting, setNote, id, i
             }}
             placeholder="Write somehting here..."
             className="textarea" />
-            <button onClick={() => handleDelete()} type="btn">
+            {/* <button onClick={() => handleDelete()} type="btn">
               <MdDeleteSweep className="handle-btn" />
-            </button>
+            </button> */}
             <div className="handle-btn">
               <button onClick={handleSave} className="save-btn" type="btn">
                 save
               </button>
-              <button
+              {/* <button
                 onClick={() => handleDelete()}
                 className="delete-btn"
                 type="btn"
               >
-                <MdDeleteSweep />
-              </button>
+                
+              </button> */}
             </div>
 
             {/* <button>Save</button> */}

@@ -21,11 +21,11 @@ function Notes() {
 
   function handleBtn() {
     setIsclick(!isClick);
-    console.log('ID goes lere',id);
-    console.log('notes',notes);
-    const noteIds=notes.map((note)=>note.id);
-    setId(noteIds[2])
-    console.log('Now lets get ID',id);
+    // console.log('ID goes lere',id);
+    // console.log('notes',notes);
+    // const noteIds=notes.map((note)=>note.id);
+    // setId(noteIds[2])
+    // console.log('Now lets get ID',id);
     
     // if (!isEditting) {
     //   setId((prev) => [...id, { id: prev.id}]);
@@ -33,7 +33,7 @@ function Notes() {
     //   setIsSaveClick(!true)
     // }
 
-    setIsNote(true);
+    setIsNote(!isNote);
     if(!!text){
       setText("")
     }
@@ -72,6 +72,7 @@ function Notes() {
               setText={setText}
               id={id}
               setId={setId}
+              setNotes={setNotes}
             />
           )}
 
@@ -98,6 +99,7 @@ function Notes() {
               setSave={setIsSaveClick}
               notes={notes}
               isNote={true}
+              setIsNote={setIsNote}
               text={text}
               setText={setText}
               id={id}

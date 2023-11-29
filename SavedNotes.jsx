@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import Note from './Note';
+import { MdDeleteSweep } from "react-icons/md";
 // import { MdOutlineEditAttributes } from "react-icons/md";
 import { BiSolidCreditCard } from "react-icons/bi";
 
 
-function SavedNotes({isEditting,setIsEditting, sSave,text,setText, setSave,notes,seNotes,setIsNote,id, setId}) {
+function SavedNotes({isEditting,setIsEditting, Save,text,setText, setSave,notes,setNotes,setIsNote,id, setId}) {
 
 
   function handleEdit(id) {
@@ -32,6 +33,15 @@ function SavedNotes({isEditting,setIsEditting, sSave,text,setText, setSave,notes
     // setIsNote(true);
     console.log('is editiing',isEditting);
   }
+  function deleteFunc(id){
+    const deleted=notes.filter((note)=>note.id!==id);
+    // setNotes(deleted);
+    setNotes(deleted);
+    console.log('Snotes',setNotes);
+    console.log('deleted note:',deleted);
+    
+
+  }
 
   return  (
     <div className="saved-notes">
@@ -44,6 +54,7 @@ function SavedNotes({isEditting,setIsEditting, sSave,text,setText, setSave,notes
           {savedNote.Text}
           {/* :::::::::::::::EDIT NOTE BUTTON HERE::::::::::::::::: */}
           <button onClick={()=> handleEdit(savedNote.id)}className='edit-btn'><><BiSolidCreditCard /></></button>
+          <button onClick={()=>deleteFunc(savedNote.id)} className='edit-btn'><MdDeleteSweep /></button>
           </div>
         </article>
         </div>
