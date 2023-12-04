@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Notes.scss";
 import { MdDeleteSweep } from "react-icons/md";
 
@@ -6,20 +6,9 @@ function Note({ notes, text, setText, edittingNote,setIsEditting, setNote, id, i
   console.log("my note here", notes);
   console.log("editingNote", edittingNote);
 
+  
 
-  //::::::::::::SAVE Function:::::::::::::::::::::::::
-  // function handleSave(p) {
-  //   if(edittingNote){
-  //   }
-  //   if (text) {
-  //     setSave(!isSave);
-  //     console.log("save from set", isSave);
-  //   }
-  //   setNote((prev) => [...note, { id: Math.floor(Math.random()*1000), Text: text }]);
-  //     setIsNote(false)
-  //     // setIsEditting()
-
-  // }
+ 
   function handleSave() {
 
     //editing mode
@@ -31,7 +20,7 @@ function Note({ notes, text, setText, edittingNote,setIsEditting, setNote, id, i
           }
           return item;
         })
-        console.log(updatedNote)
+        // console.log('edit mode',updatedNote)
         setNote(updatedNote);
         // setNote((prevNotes) =>
         //   prevNotes.map((n) => (n.id === edittingNote.id ? { ...n, Text: text } : n))
@@ -43,11 +32,16 @@ function Note({ notes, text, setText, edittingNote,setIsEditting, setNote, id, i
       //creating mode..
       else {
         // If creating a new note
-        setNote((prev) => [
-          ...prev,
-          { id: Math.floor(Math.random() * 1000), Text: text },
-        ]);
+        
+        setNote((prev)=>{
+          if (prev == null){
+            return [{id: Math.floor(Math.random() * 1000), Text:text}]
+          }else{
+            return [...prev,{id: Math.floor(Math.random() * 1000), Text:text}]
+          }
+        })
         setIsNote(false)
+        // console.log('Notes in creating mode',notes);
         
       }
   
@@ -60,6 +54,7 @@ function Note({ notes, text, setText, edittingNote,setIsEditting, setNote, id, i
   function handleDelete() {
     const newNote = notes.filter((note) => note.id !== id);
     setNote(newNote);
+    // console.log('note----',notes);
   }
   return (
     <div className="note-container">

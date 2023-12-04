@@ -3,11 +3,12 @@ import Note from './Note';
 import { MdDeleteSweep } from "react-icons/md";
 // import { MdOutlineEditAttributes } from "react-icons/md";
 import { BiSolidCreditCard } from "react-icons/bi";
+import Search from './Search';
 
 
 function SavedNotes({isEditting,setIsEditting, Save,text,setText, setSave,notes,setNotes,setIsNote,id, setId}) {
 
-
+console.log("notessss", notes)
   function handleEdit(id) {
     console.log('Editing started...',id);
     // const id=id.map((item)=>item.)
@@ -38,7 +39,7 @@ function SavedNotes({isEditting,setIsEditting, Save,text,setText, setSave,notes,
     // setNotes(deleted);
     setNotes(deleted);
     console.log('Snotes',setNotes);
-    console.log('deleted note:',deleted);
+    console.log('deleted note:',notes);
     
 
   }
@@ -46,8 +47,10 @@ function SavedNotes({isEditting,setIsEditting, Save,text,setText, setSave,notes,
   return  (
     <div className="saved-notes">
       <h4>Saved Notes</h4>
+      {/* <div><Search/></div> */}
+     
       {/* <div className='saved-items'> */}
-      {notes.map((savedNote) => (
+      {notes?.map((savedNote) => (
         <div className='saved-container'>
         <article key={savedNote.id} className='saved-articled' >
           <div className='saved-items'>
@@ -62,6 +65,7 @@ function SavedNotes({isEditting,setIsEditting, Save,text,setText, setSave,notes,
     {/* </div> */}
     
     </div>
+    
   );
 }
 

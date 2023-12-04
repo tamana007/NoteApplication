@@ -1,44 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Note from "./Note";
 import "./Notes.scss";
 import { GrNotes } from "react-icons/gr";
 import { LuPencilLine } from "react-icons/lu";
 import SavedNotes from "./SavedNotes";
+import Search from "./Search";
 // import { MdDeleteSweep } from "react-icons/md";
 // import {<FontAwesomeIcon icon="fa-solid fa-notes" />} from 'react-icon/fa'
 
 function Notes() {
   const [isClick, setIsclick] = useState(false);
   const [isNote, setIsNote] = useState(false);
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState();
   const [isSaveClick, setIsSaveClick] = useState(false);
-  const[isEditting, setIsEditting]=useState(null);
+  const [isEditting, setIsEditting] = useState(null);
   const [text, setText] = useState("");
   const [id, setId] = useState();
+  const [query, setQuery] = useState("");
+  const [filterdNote, setFilteredNote] = useState([]);
+  const [isSearching, setIsSearching] = useState(false)
 
-
-  // const [saveNote,setSaveNote]=useState()
+  //::::::GET FROM LOCAL STORAGE::::::::::
+  useEffect(() => {
+    // Load notes from local storage on component mount
+    if (!notes) {
+      const lStorage = JSON.parse(localStorage.getItem("Notes"));
+      if (lStorage) {
+        setNotes(lStorage);
+      }
+    } else {
+      localStorage.setItem("Notes", JSON.stringify(notes));
+      console.log("Stored Notes:", notes);
+    }
+  }, [notes]);
 
   function handleBtn() {
     setIsclick(!isClick);
-    // console.log('ID goes lere',id);
-    // console.log('notes',notes);
-    // const noteIds=notes.map((note)=>note.id);
-    // setId(noteIds[2])
-    // console.log('Now lets get ID',id);
-    
-    // if (!isEditting) {
-    //   setId((prev) => [...id, { id: prev.id}]);
-    //   console.log('changed id',id);
-    //   setIsSaveClick(!true)
-    // }
-
     setIsNote(!isNote);
-    if(!!text){
-      setText("")
+    +
+    if (!!text) {
+      setText("");
     }
   }
-  
+//  useEffect(()=>{handleSearch()},[query])
+
+// :::::::::::::::::::::Search FUNCTION ::::::::::::::::
+
+console.log("isSearching", isSearching) 
+  function handleSearch(e) {
+    // console.log("on change", e.target.value)
+    setQuery(e.target.value)
+    
+    if(e.target.value.length > 0 ){
+      setIsSearching(true)
+    }else{
+      setIsSearching(false)
+    }
+
+    const filteredNote = notes.filter((note) =>
+      note.Text.startsWith(e.target.value)
+    );
+    setFilteredNote(filteredNote);
+    console.log('filterafter serach',filterdNote);
+  }
+  // ::::::::::::::::::::::::::::::::::::::::::::::
 
   return (
     <div className="Notes">
@@ -56,10 +81,37 @@ function Notes() {
             Create Notes
           </button>
         </div>
-        {/* ::::::::::::::::::::COMPONENTS RENDERING ::::::::::::::::::::*/}
+        {/* :::::::::::::::::::::::SEARCHBAR LOGINC ::::::::::::::: */}
 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+        <div>
+          <Search onSearch={handleSearch} query={query} setQuery={setQuery} />
+        </div>
+{/* 
+        {filterdNote.length > 0 ? (
+          filterdNote.map((note) => (
+            <SavedNotes key={note.id} Text={note.Text} content={note.content} />
+          ))
+        ) : (
+          <p>No matching notes found.</p>
+        )} */}
+
+        {/* :::::::::::::::::::::::::::END SEARCH :::::::::::::::::::::::::: */}
+
+        {/* ::::::::::::::::::::COMPONENTS RENDERING ::::::::::::::::::::*/}
         <div className="notescomp">
-          {notes.length > 0 && (
+          {notes?.length > 0 && !isSearching ? (
             <SavedNotes
               isSave={isSaveClick}
               setSave={setIsSaveClick}
@@ -74,7 +126,25 @@ function Notes() {
               setId={setId}
               setNotes={setNotes}
             />
-          )}
+          )
+        :
+        (
+          <SavedNotes
+            isSave={isSaveClick}
+            setSave={setIsSaveClick}
+            isEditting={isEditting}
+            setIsEditting={setIsEditting}
+            notes={filterdNote}
+            seNote={setFilteredNote}
+            setIsNote={setIsNote}
+            text={text}
+            setText={setText}
+            id={id}
+            setId={setId}
+            setNotes={setNotes}
+          />
+        )
+        }
 
           {/* <SavedNotes savedNotes={saveNote}/> */}
           {/* {note.map((item) => {
