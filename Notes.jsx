@@ -37,7 +37,7 @@ function Notes() {
   function handleBtn() {
     setIsclick(!isClick);
     setIsNote(!isNote);
-    +
+    
     if (!!text) {
       setText("");
     }
@@ -46,7 +46,7 @@ function Notes() {
 
 // :::::::::::::::::::::Search FUNCTION ::::::::::::::::
 
-console.log("isSearching", isSearching) 
+// console.log("isSearching", isSearching) 
   function handleSearch(e) {
     // console.log("on change", e.target.value)
     setQuery(e.target.value)
@@ -108,6 +108,7 @@ console.log("isSearching", isSearching)
         )} */}
 
         {/* :::::::::::::::::::::::::::END SEARCH :::::::::::::::::::::::::: */}
+        {/* {for} */}
 
         {/* ::::::::::::::::::::COMPONENTS RENDERING ::::::::::::::::::::*/}
         <div className="notescomp">
