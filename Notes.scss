@@ -168,7 +168,7 @@ h4{
   align-items: center;
   justify-content: center;
   border-radius: 50px;
-  border: 2px solid gray;
+  border: 2px solid rgb(12, 11, 11);
   box-sizing: border-box;
   padding: 20px 10px;
   width: 100%;
@@ -189,9 +189,35 @@ h4{
 
 }
 .recomend-list{
-  border: 2px solid rgb(29, 21, 21);
+  // border: 2px solid 2px solid rgb(12, 11, 11);
+  // box-sizing: border-box;
+
+  // width: 100%;
+
+}
+.search-merge{
   box-sizing: border-box;
-
+  border: 2px solid rgb(163, 38, 38);
+  background-color: #eed9ed;
+  // padding: 10px 10px;
   width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  // border-radius: 50px;
+  border-color: rgb(99, 96, 96);
 
+}
+.recommend-list{
+  list-style-type: none;
+  // margin-btoom: 5px;
+  margin-bottom: 10px;
+  transition: ease ;
+  
+}
+.recommend-search-icon{
+  margin-right: 10px;
+}
+.recommend-list:hover{
+  background-color: #f0f0f0;
+  cursor: pointer;
 }

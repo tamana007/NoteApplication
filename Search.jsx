@@ -4,7 +4,7 @@ import Recommendation from "./Recommendation"
 import { CiSearch } from "react-icons/ci";
 
 
-function Search({onSearch,query,setQuery}) {
+function Search({onSearch,query,setQuery,filterdNote,isSearching}) {
 
   
 
@@ -23,8 +23,8 @@ function Search({onSearch,query,setQuery}) {
       value={query}
       onChange={e => onSearch(e)}
     /></div>
-    
-    <Recommendation/>
+    {isSearching &&  <Recommendation filterdNote={filterdNote} query={query}/>}
+   
     </div>
   )
 }

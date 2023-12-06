@@ -96,7 +96,7 @@ function Notes() {
      
      
         <div>
-          <Search onSearch={handleSearch} query={query} setQuery={setQuery} />
+          <Search onSearch={handleSearch} query={query} setQuery={setQuery} filterdNote={filterdNote} isSearching={isSearching}/>
         </div>
 {/* 
         {filterdNote.length > 0 ? (
