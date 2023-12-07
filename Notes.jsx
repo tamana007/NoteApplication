@@ -18,7 +18,9 @@ function Notes() {
   const [id, setId] = useState();
   const [query, setQuery] = useState("");
   const [filterdNote, setFilteredNote] = useState([]);
-  const [isSearching, setIsSearching] = useState(false)
+  const [isSearching, setIsSearching] = useState(false);
+  const [linkClick,setLinkClick]=useState(false);
+  const[selectedNote,setSelectedNote]=useState([])
 
   //::::::GET FROM LOCAL STORAGE::::::::::
   useEffect(() => {
@@ -63,6 +65,25 @@ function Notes() {
     setFilteredNote(filteredNote);
     console.log('filterafter serach',filterdNote);
   }
+
+  function handleLink(text){
+    // setLinkClick(true);
+    
+    const selected=filterdNote.filter((note)=>note.Text===text);
+    // setNotes(selected);
+    console.log('notes from recommenf',selected);
+    setSelectedNote(selected);
+    setLinkClick(true);
+    console.log('sln',selectedNote);
+    setIsSearching(false);
+    
+    // setText("");
+  
+    // setIsSearching(!isSearching)
+    // sele
+  
+  
+  }
   // ::::::::::::::::::::::::::::::::::::::::::::::
 
   return (
@@ -96,7 +117,7 @@ function Notes() {
      
      
         <div>
-          <Search onSearch={handleSearch} query={query} setQuery={setQuery} filterdNote={filterdNote} isSearching={isSearching}/>
+          <Search onSearch={handleSearch} query={query} setQuery={setQuery} filterdNote={filterdNote} isSearching={isSearching} setFilteredNote={setFilteredNote} setNotes={setNotes} notes={notes} setIsSearching={setIsSearching} selectedNote={selectedNote} setSelectedNote={setSelectedNote} handleLink={handleLink}/>
         </div>
 {/* 
         {filterdNote.length > 0 ? (
@@ -112,7 +133,32 @@ function Notes() {
 
         {/* ::::::::::::::::::::COMPONENTS RENDERING ::::::::::::::::::::*/}
         <div className="notescomp">
-          {notes?.length > 0 && !isSearching ? (
+          {/* { */}
+            {/* //  In here I want to add condtion that if linkClicked Render Saved note like this: */}
+             
+            {linkClick ? (
+              <SavedNotes
+                isSave={isSaveClick}
+                setSave={setIsSaveClick}
+                isEditting={isEditting}
+                setIsEditting={setIsEditting}
+                notes={selectedNote}  
+                seNote={selectedNote}
+                setIsNote={setIsNote}
+                text={text}
+                setText={setText}
+                id={id}
+                setId={setId}
+                setNotes={setNotes}
+              />
+            )
+            :
+             
+               
+          
+          
+          
+            notes?.length > 0 && !isSearching ? (
             <SavedNotes
               isSave={isSaveClick}
               setSave={setIsSaveClick}
@@ -136,7 +182,7 @@ function Notes() {
             isEditting={isEditting}
             setIsEditting={setIsEditting}
             notes={filterdNote}
-            seNote={setFilteredNote}
+            seNote={filterdNote}
             setIsNote={setIsNote}
             text={text}
             setText={setText}
@@ -145,21 +191,12 @@ function Notes() {
             setNotes={setNotes}
           />
         )
+       
+
         }
 
-          {/* <SavedNotes savedNotes={saveNote}/> */}
-          {/* {note.map((item) => {
-            return (
-              <Note
-                key={item.id}
-                note={note}
-                setNote={setNote}
-                id={item.id}
-                isSave={isSaveClick}
-                setSave={setIsSaveClick}
-              />
-            );
-          })} */}
+       
+          
 
           {isEditting && (
             <Note
