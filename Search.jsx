@@ -24,7 +24,7 @@ function Search({
   // }
 
   return (
-    <div>
+    <div className="recommendationContainer">
       <div className="search-container">
         <span>
           <CiSearch className="search-Icon" />

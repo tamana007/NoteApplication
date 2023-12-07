@@ -64,6 +64,13 @@ function Notes() {
     );
     setFilteredNote(filteredNote);
     console.log('filterafter serach',filterdNote);
+
+
+    //after clearing input values..
+    if(e.target.value.length <= 0){
+      setLinkClick(false);
+      setIsSearching(false)
+    }
   }
 
   function handleLink(text){
@@ -76,6 +83,7 @@ function Notes() {
     setLinkClick(true);
     console.log('sln',selectedNote);
     setIsSearching(false);
+    setQuery(text)
     
     // setText("");
   
@@ -116,9 +124,19 @@ function Notes() {
      
      
      
-        <div>
-          <Search onSearch={handleSearch} query={query} setQuery={setQuery} filterdNote={filterdNote} isSearching={isSearching} setFilteredNote={setFilteredNote} setNotes={setNotes} notes={notes} setIsSearching={setIsSearching} selectedNote={selectedNote} setSelectedNote={setSelectedNote} handleLink={handleLink}/>
-        </div>
+        
+        <Search 
+        onSearch={handleSearch} 
+        query={query} 
+        setQuery={setQuery} 
+        filterdNote={filterdNote} 
+        isSearching={isSearching} 
+        setFilteredNote={setFilteredNote} 
+        setNotes={setNotes} notes={notes} 
+        setIsSearching={setIsSearching} 
+        selectedNote={selectedNote} 
+        setSelectedNote={setSelectedNote} 
+        handleLink={handleLink}/>
 {/* 
         {filterdNote.length > 0 ? (
           filterdNote.map((note) => (

@@ -210,10 +210,16 @@ h4{
   border-width: 0 2px 2px 2px; /* top right bottom left */
 
 }
+
+.recommendationContainer{
+  display: flex;
+  flex-direction: column;
+}
+
 .recommend-list{
   list-style-type: none;
   // margin-btoom: 5px;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
   transition: ease ;
   
 }
