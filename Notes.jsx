@@ -8,7 +8,7 @@ import Search from "./Search";
 // import { MdDeleteSweep } from "react-icons/md";
 // import {<FontAwesomeIcon icon="fa-solid fa-notes" />} from 'react-icon/fa'
 
-function Notes() {
+function Notes({setIsAuthenticate}) {
   const [isClick, setIsclick] = useState(false);
   const [isNote, setIsNote] = useState(false);
   const [notes, setNotes] = useState();
@@ -249,7 +249,11 @@ function Notes() {
             />
           )}
         </div>
+        <div className="btn-container">
+        <button onClick={()=>setIsAuthenticate(false)} className="note-btn">SIGN OUT</button>
+        </div>
       </div>
+      
     </div>
   );
 }

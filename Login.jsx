@@ -3,14 +3,27 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react';
 // import {firebase}
 import {auth} from './firebase'
+import Register from './Register';
 
-function Login({onLoginSuccess}) {
+function Login({onLoginSuccess,setShowRegister}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
+  const[registerClick,setRegisterClick]=useState(false);
+
+
+  function handleRegister(){
+    setRegisterClick(true)
+    // setHaveAccount(false)
+    setShowRegister(true)
+    console.log('registered');
+
+  }
+
   const handleLogin = async (e) => {
     e.preventDefault();
+    // setShowRegister(true);
 
     const auth = getAuth(); // Get the authentication object
 
@@ -26,23 +39,64 @@ function Login({onLoginSuccess}) {
     }
   };
    return (
-    <div>
+    // <div className='login-container'>
+    //   <h2 className='login-title'>Login</h2>
+    //   <form onSubmit={handleLogin}>
+    //     <label className='input-label'>
+    //      <span className='input-label'>Email:</span> 
+    //       <input className='inpt-login' type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+    //     </label>
+    //     <br />
+    //     <label>
+    //       <span className='input-label'>Password:</span>
+    //       <input className='inpt-login-2' type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+    //     </label>
+    //     <br />
+    //     <button type="submit">Login</button>
+    //   </form>
+    //   {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message if there is one */}
+    // </div>
+
+
+
+
+<div className='login-wrapper'>
+<div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <label>
-          Email:
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </label>
-        <br />
-        <button type="submit">Login</button>
+      <div className="form-group">
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </div>
+      <button type="submit"
+      >
+        Login
+      </button>
+      <button className="register-btn" type="button" onClick={handleRegister}>
+        Register
+      </button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message if there is one */}
+      {/* <Register/> */}
     </div>
+</div>
   );
 };
 
